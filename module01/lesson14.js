@@ -1,113 +1,74 @@
-class Node {
-    constructor(data){
+/* Estrutura de dados 
 
-        this.data = data
-        this.next = null
-    }
+
+Listas encadeadas 
+
+
+*/
+
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
 }
 
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.size = 0;
+  }
 
-class LinkedList{
-    constructor(){
-        this.head = null
-        this.size = 0
+  add(data) {
+    let newNode = new Node(data);
+
+    if (this.head === null) {
+      this.head = newNode;
+    } else {
+      let current = this.head;
+      while (current.next !== null) {
+        current = current.next;
+      }
+      current.next = newNode;
+    }
+    this.size++;
+  }
+
+  insertAt(data, index) {
+    if (index < 0 || index > this.size) {
+      return console.log("Index fora dos limites");
     }
 
+    let newNode = new Node(data);
+    let current = this.head;
+    let previous;
 
+    if (index === 0) {
+      newNode.next = this.head;
+      this.head = newNode;
+    } else {
+      for (let i = 0; i < index; i++) {
+        previous = current;
+        current = current.next;
+      }
 
-    
-    add(data){
-        let newNode = new Node(data)
-    
-        if(this.head === null){
-            this.head = newNode
-        }else{
-            let current = this.head
-            while(current.next !== null){
-                current = current.next
-            }
-
-            current.next = newNode
-            
-        }
-        this.size++
+      newNode.next = current;
+      previous.next = newNode;
     }
+  }
 
-
-    insertAt(data, index){
-        let newNode = new Node(data)
-        let current = this.head       
-        
-        if(index < 0 || index > this.size){
-            return console.log("Objeto fora dos ");
-        }
-
-        if(index === 0){
-            newNode.index = this.head
-            this.head = newNode
-
-        }else{
-            for(let i = 0; i !== index-1; i++){
-                current = current.next
-            }
-            newNode.next = current.next
-            current.next = newNode
-
-        }
-        this.size++
+  printList() {
+    let current = this.head;
+    while (current !== null) {
+      console.log(current.data);
+      current = current.next;
     }
-    
+  }
+}
 
-    removeFrom(index){
+let list = new LinkedList();
 
-        let current = this.head
-
-        if(index < 0 || index > this.size){
-            return console.log("index Objeto fora dos");
-        }
-
-        if (index === 0) {
-            this.head = current.next
-        }else{
-
-            for(let i = 0; i < index -1; i++){
-                current = current.next   
-            }
-
-            current.next = current.next.next
-        }
-
-        this.size--
-    }
-
-    indexOf(){
-        
-    }
-
-    printList() {
-        let current = this.head
-
-       
-
-            while (current !== null) {
-                console.log(current.data);
-                current = current.next
-            }
-        }
-    }
-
-
-        
-
-
-
-
-let list = new LinkedList()
-list.add("Elemento 0")
-list.add("Elemento 1")
-list.add("Elemento 2")
-list.add("Elemento 3")
-// list.insertAt("Novo elemento 2", 2)
-list.removeFrom(3)
-
-list.printList()
+list.add("formação +praTi");
+list.add(true);
+list.add("elemento 3");
+list.printList();

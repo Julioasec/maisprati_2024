@@ -1,0 +1,4 @@
+git log - exibe o histórico de commits do repositório.
+git cat-file -t/-p <hash> - exibe detalhes sobre o commits (t exibe o tipo, p exibe o conteúdo do commit)
+
+
